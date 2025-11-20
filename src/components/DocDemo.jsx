@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function DocDemo() {
   const [input, setInput] = useState('')
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [apiKey, setApiKey] = useState('')
+
+  useEffect(() => {
+    const k = localStorage.getItem('FLAMES_API_KEY')
+    if (k) setApiKey(k)
+  }, [])
 
   const backend = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
@@ -17,7 +23,7 @@ export default function DocDemo() {
     try {
       const res = await fetch(`${backend}/analyze`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...(apiKey ? { 'x-api-key': apiKey } : {}) },
         body: JSON.stringify({ content: input }),
       })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)

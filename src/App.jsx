@@ -1,6 +1,7 @@
 import Hero from './components/Hero'
 import Features from './components/Features'
 import DocDemo from './components/DocDemo'
+import ChatAutopilot from './components/ChatAutopilot'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <nav className="hidden sm:flex items-center gap-6 text-sm">
             <a href="#how" className="hover:text-white">How it works</a>
             <a href="#try" className="hover:text-white">Try it</a>
+            <a href="#autopilot" className="hover:text-white">Autopilot</a>
             <a href="/test" className="hover:text-white">Backend test</a>
           </nav>
         </div>
@@ -23,6 +25,7 @@ function App() {
         <Hero />
         <Features />
         <DocDemo />
+        <ChatAutopilot />
       </main>
 
       <footer className="py-8 border-t border-white/10">
